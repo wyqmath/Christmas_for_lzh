@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #001f3f;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+#christmas-tree-canvas {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) rotateY(0deg);
+    width: 300px;
+    height: 500px;
+    animation: rotateTree 20s linear infinite;
+}
+
+#ornaments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.ornament {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+#tree-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+#tree-container.visible {
+    opacity: 1;
+    transform: translateX(-50%) rotateY(360deg);
+}
+
+/* 3D旋转动画 */
+@keyframes rotateTree {
+    from {
+        transform: translateX(-50%) rotateY(0deg);
+    }
+    to {
+        transform: translateX(-50%) rotateY(360deg);
+    }
+}
+
+/* 雪花样式 */
+#snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.snowflake {
+    position: absolute;
+    color: #FFFFFF;
+    user-select: none;
+    animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none;
+}
