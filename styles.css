@@ -5,13 +5,34 @@ body {
     overflow: hidden;
     position: relative;
     height: 100vh;
+    perspective: none;
 }
 
-#christmas-tree-canvas {
+#tree-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    perspective: 1000px;
+    width: 100vw;
+    height: 100vh;
+}
+
+#christmas-tree-canvas {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    animation: rotateVertical 10s linear infinite;
+}
+
+@keyframes rotateVertical {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 #ornaments {
@@ -65,7 +86,33 @@ body {
     }
 }
 
-/* 隐藏类 */
+#decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.decoration {
+    position: absolute;
+    animation: fallAndRotate linear infinite;
+}
+
+@keyframes fallAndRotate {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.6;
+    }
+}
+
+/* 藏类 */
 .hidden {
     display: none;
 }
